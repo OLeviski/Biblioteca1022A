@@ -4,7 +4,7 @@ export class DatabaseMemory{
 #livros = new Map()
 
 list(){
-    return this.#livros.values()
+    return Array.from(this.#livros.values())
 }
 create(livro){
     const livroId = randomUUID()

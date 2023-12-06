@@ -9,18 +9,25 @@ server.get('/', () => {
 })
 
 server.post('/livro', (request, reply) => {
-   // return 'cadastrar'
+// Acessando dados do corpo da requisição
+    const {titulo, autor, npaginas} = request.body
+// Exibindo dados
+//    console.log(body)
+   
+    // return 'cadastrar'
     database.create({
-        titulo: 'Livro 01',
-        autor: 'Autor 01',
-        npaginas: 400,
+        titulo: titulo,
+        autor: autor,
+        npaginas: npaginas,
     })
 
     return reply.status(201).send
 })
 
 server.get('/livro', () => {
-    return 'Ler Livro'
+    const livros = database.list()
+    console.log(livros)
+    return livros
 })
 server.listen({
     port: 3333,
